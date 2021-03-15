@@ -32,7 +32,7 @@ public class BitmapSorting {
         // duplicates in numWithDuplicates
         readNumsFromFile();
 
-        // go through bitmap (and together with the duplicates info from numWithDuplicates to output
+        // go through bitmap and together with the duplicates info from numWithDuplicates to output
         // the sorted info to the file
         return sortNumsBackToFile();
     }
