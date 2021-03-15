@@ -1,14 +1,16 @@
-ackage test.java.se.xcom.bitmapsort;
+package test.java.se.xcom.bitmapsort;
 
-import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BitmapTest {
-    // each number need 9 digits without the country code etc.
-    private Bitmap bitmap = new Bitmap(999999999);
+public class PhoneNumberCanonicalizerTest {
+    private final String countryCode = "46";
+    private final String internationalPrefix = "00";
+    private final String nationalPrefix = "0";
+    private PhoneNumberCanonicalizer phoneNumberCanonicalizer =
+            new PhoneNumberCanonicalizer(countryCode, internationalPrefix, nationalPrefix);
 
     @Before
     public void setUp() {}
@@ -17,40 +19,37 @@ public class BitmapTest {
     public void tearDown() {}
 
     @Test
-    public void testSingleNumberSetSucceeded() {
-        bitmap.add(123);
-        Assert.assertEquals(true, bitmap.contain(123));
-        Assert.assertEquals(false, bitmap.contain(124));
-
-        bitmap.add(678);
-        Assert.assertEquals(true, bitmap.contain(678));
-        bitmap.clear(123);
-        Assert.assertEquals(false, bitmap.contain(123));
-        Assert.assertEquals(true, bitmap.contain(678));
-
-        bitmap.add(999999999);
-        Assert.assertEquals(true, bitmap.contain(999999999));
-
-        bitmap.add(1);
-        Assert.assertEquals(true, bitmap.contain(1));
+    public void testNumberContainingDashSucceed() {
+        String num = "076-1301007";
+        String numExpected = "+" + countryCode + "761301007";
+        Assert.assertEquals(phoneNumberCanonicalizer.canonicalize(num), numExpected);
     }
 
     @Test
-    public void testSortNumbersSucceeded() {
-        bitmap.add(123);
-        bitmap.add(888);
-        bitmap.add(212);
-        bitmap.add(999);
-        bitmap.add(1216);
-        bitmap.add(777);
-        bitmap.add(999);
+    public void testNumberWithoutNationalPrefixSucceed() {
+        String num = "705608145";
+        String numExpected = "+" + countryCode + "705608145";
+        Assert.assertEquals(phoneNumberCanonicalizer.canonicalize(num), numExpected);
+    }
 
-        List<String> bits = bitmap.getNumsOrderByAsc();
-        Assert.assertEquals("123", bits.get(0));
-        Assert.assertEquals("212", bits.get(1));
-        Assert.assertEquals("777", bits.get(2));
-        Assert.assertEquals("888", bits.get(3));
-        Assert.assertEquals("999", bits.get(4));
-        Assert.assertEquals("1216", bits.get(5));
+    @Test
+    public void testNumberWithInternationalAndNationalPrefixInMiddleSucceed() {
+        String num = "700469913";
+        String numExpected = "+" + countryCode + "700469913";
+        Assert.assertEquals(phoneNumberCanonicalizer.canonicalize(num), numExpected);
+    }
+
+    @Test
+    public void testNumberWithILeadingInternationalPrefixAndCountryCodeSucceed() {
+        String num = "0046700469913";
+        String numExpected = "+" + countryCode + "700469913";
+        Assert.assertEquals(phoneNumberCanonicalizer.canonicalize(num), numExpected);
+    }
+
+    @Test
+    public void testNumberWithILeadingCountryCodeSucceed() {
+        String num = "0700469913";
+        String numExpected = "+" + countryCode + "700469913";
+        Assert.assertEquals(phoneNumberCanonicalizer.canonicalize(num), numExpected);
     }
 }
