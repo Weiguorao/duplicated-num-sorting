@@ -41,7 +41,7 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 3. "MAXPHONENUM" in the code could be simplified as "MAXALLOWEDLENTHOFPHONENUM".
 
 #### The normalization of numbers
-The current implementation could be further reviewed to see if there is any other cases that should be covered.
+The current implementation could be further reviewed to see if there are any other cases that should be covered.
 
 #### The size of input file becomes bigger and bigger
 The solution should handle it smoothly as the number is reading from buffer of input file. But we could make it a bit faster - splitting the file into smaller trunks and reading the numbers and setting them in parellel, and then sorting them out in the end.
