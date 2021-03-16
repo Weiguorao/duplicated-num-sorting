@@ -35,10 +35,10 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 
 ### Other considerations
 
-# The allowed maximum length of numbers
+#### The allowed maximum length of numbers
 1. Right now the numbers whose lengths are longer than expected (e.g. 10 digits without the leading "+", country code, international prefix, national prefix) will be skipped in the sorting out results (these original numbers are printed during runtime but could be loggered).
 2. If such numbers are allowed, then a bit update of Bitmap structure is needed, for example, int -> long should be enough.
 3. "MAXPHONENUM" in the code could be simplified as "MAXALLOWEDLENTHOFPHONENUM".
 
-# The normalization of numbers
+#### The normalization of numbers
 The current implementation could be further reviewed to see if there is any other cases that should be covered.
