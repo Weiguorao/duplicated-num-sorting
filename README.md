@@ -15,7 +15,7 @@ Taking 763053058, 77061, 770503058 for example, the sorting result if order by d
 
 If using the strategy to align leftmost to sort out the result, then the result should be 763053058, 770503058, 77061.
 
-One of the solution to address is:
+One of the solution to address it is:
 1. Adding "0" from the rightmost of the normalized number (removal of the leading "+" + country code) to make the shorter number be always having the same length with the others, e.g. 77061 -> 770610000, but we might need to differentiate 77061 and 770610 from the original number.
 2. Using the revised number in Bitmap and also creating a hash map with the key "the revised number" and the value "the normalized number". The structure of the current hash map in the code will be updated liking as below:
 ```
@@ -32,3 +32,13 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 "770610": 2
 "7706100": 4
 ...
+
+### Other considerations
+
+# The allowed maximum length of numbers
+1. Right now the numbers whose lengths are longer than expected (e.g. 10 digits without the leading "+", country code, international prefix, national prefix) will be skipped in the sorting out results (these original numbers are printed during runtime but could be loggered).
+2. If such numbers are allowed, then a bit update of Bitmap structure is needed, for example, int -> long should be enough.
+3. "MAXPHONENUM" in the code could be simplified as "MAXALLOWEDLENTHOFPHONENUM".
+
+# The normalization of numbers
+The current implementation could be further reviewed to see if there is any other cases that should be covered.
