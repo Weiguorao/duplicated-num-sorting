@@ -29,10 +29,11 @@ In Bitmap, it will always use "770610000" for all the original numbers "7706100"
 
 3. Going through Bitmap, sorting the number with ascending order of each bit set, and for every such number, and then using this number as the key of hash map to connect it and sorting the final results basing on the length of key of next hash map.
 e.g. {"7706100": 4, "77061": 1, "770610": 2} ->   
-"77061": 1
-"770610": 2
-"7706100": 4
-...
+```
+77061: 1
+770610: 2
+7706100: 4
+```
 
 ### Other considerations
 
