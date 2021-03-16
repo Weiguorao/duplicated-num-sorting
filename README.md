@@ -8,7 +8,6 @@ bitmapSorting.sort();
 ```
 
 ### Sorting strategy
-
 Now the sorting is basing on the integer value of each phone number after normalization (removal of the leading "+" + country code) - the less length of phone number, the higher priority to be sorted out.
 
 Taking 763053058, 77061, 770503058 for example, the sorting result if order by descending is 77061, 763053058, 770503058.
@@ -48,4 +47,9 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 The current implementation could be further reviewed to see if there are any other cases that should be covered.
 
 #### The size of input file becomes bigger and bigger
+1. If the number of different phone numbers is not huge - i.e. many duplicates in the file  
 The solution should handle it smoothly as the number is reading from buffer of input file. But we could make it a bit faster - splitting the file into smaller trunks and reading the numbers and setting them in parellel, and then sorting them out in the end.
+
+2. If the number of different phone numbers is also huge
+Either split the phone numbers into different parts (according to e.g. phone number prefix) and then sort in this way.
+Or likely the other algorithm (external merge sort) is more suitable in this case.
