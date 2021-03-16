@@ -7,7 +7,7 @@ BitmapSorting bitmapSorting = new BitmapSorting();
 bitmapSorting.sort();
 ```
 
-### Sort strategy
+### Sorting strategy
 
 Now the sorting is basing on the integer value of phone number after normalization (removal of the leading "+" + country code) - the less length of phone number, the higher priority to be sorted out.
 
