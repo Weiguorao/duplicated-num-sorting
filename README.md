@@ -34,6 +34,15 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 770610: 2
 7706100: 4
 ```
+Another solution(using Trie):
+```
+class Tries {
+    Boolean isTrie; // A flag to show if this is end of 1 number
+    Int duplicates; // the times of duplicates for this number
+    HashMap<Character, Tries> childen = new HashMap<Character, Tries> {};
+}
+```
+Then output all the results via preorder traversal.
 
 ### Other considerations
 
