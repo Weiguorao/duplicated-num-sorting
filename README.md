@@ -35,6 +35,7 @@ e.g. {"7706100": 4, "77061": 1, "770610": 2} ->
 7706100: 4
 ```
 We could use "java.util.BitSet" directly in this case.
+
 Another solution(using Trie):
 ```
 class Tries {
