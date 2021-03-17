@@ -50,6 +50,7 @@ The current implementation could be further reviewed to see if there are any oth
 #### The size of input file becomes bigger and bigger
 1. If the number of different phone numbers is not huge - i.e. many duplicates in the file  
 The solution should handle it smoothly as the number is reading from buffer of input file. But we could make it a bit faster - splitting the file into smaller trunks and reading the numbers and setting them in parellel, and then sorting them out in the end.
+If less memory comsumption required (<100M), then split the phone numbers into different parts (according to e.g. phone number prefix).
 
 2. If the number of different phone numbers is also huge
 
