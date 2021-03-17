@@ -10,7 +10,7 @@ bitmapSorting.sort();
 ### Sorting strategy
 Now the sorting is basing on the integer value of each phone number after normalization (removal of the leading "+" + country code) - the less length of phone number, the higher priority to be sorted out.
 
-Taking 763053058, 77061, 770503058 for example, the sorting result if order by descending is 77061, 763053058, 770503058.
+Taking 763053058, 77061, 770503058 for example, the sorting result if order by ascending is 77061, 763053058, 770503058.
 
 If using the strategy to align leftmost to sort out the result, then the result should be 763053058, 770503058, 77061.
 
