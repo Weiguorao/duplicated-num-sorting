@@ -41,7 +41,7 @@ Another solution(using Trie):
 class Tries {
     Boolean isTrie; // A flag to show if this is end of 1 number
     int duplicates; // the times of duplicates for this number
-    HashMap<Character, Tries> childen = new HashMap<Character, Tries> {};
+    HashMap<Character, Tries> childen = new HashMap<Character, Tries>();
 }
 ```
 Then output all the results via preorder traversal.
